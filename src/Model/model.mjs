@@ -13,8 +13,8 @@ export default class Model {
       { rate: "AZN", checked: "" },
     ];
     this.tempArr = [
-      { rate: "RUB", summ: "1", summ2: "" },
-      { rate: "USD", summ: "", summ2: "" },
+      { rate: "RUB", summ: "1", perUnit: "" },
+      { rate: "USD", summ: "", perUnit: "" },
     ];
   }
 
@@ -29,10 +29,10 @@ export default class Model {
   }
 
   rate() {
-    this.tempArr[1].summ = this.tempArr[0].summ2 * this.tempArr[0].summ;
+    this.tempArr[1].summ = this.tempArr[0].perUnit * this.tempArr[0].summ;
   }
 
   rate2() {
-    this.tempArr[0].summ = this.tempArr[1].summ2 * this.tempArr[1].summ;
+    this.tempArr[0].summ = this.tempArr[1].perUnit * this.tempArr[1].summ;
   }
 }

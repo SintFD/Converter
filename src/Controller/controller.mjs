@@ -27,8 +27,8 @@ export default class Controller {
       this.getCurrency(tempArr[0].rate, tempArr[1].rate),
       this.getCurrency(tempArr[1].rate, tempArr[0].rate),
     ]).then((data) => {
-      tempArr[0].summ2 = data[0];
-      tempArr[1].summ2 = data[1];
+      tempArr[0].perUnit = data[0];
+      tempArr[1].perUnit = data[1];
     });
   }
 
@@ -62,8 +62,8 @@ export default class Controller {
         this.model.rate2();
         this.view.leftInput.value = tempArr[0].summ;
       }
-      this.view.leftRate.innerText = `1 ${tempArr[0].rate} = ${tempArr[0].summ2} ${tempArr[1].rate}`;
-      this.view.rightRate.innerText = `1 ${tempArr[1].rate} = ${tempArr[1].summ2} ${tempArr[0].rate}`;
+      this.view.leftRate.innerText = `1 ${tempArr[0].rate} = ${tempArr[0].perUnit} ${tempArr[1].rate}`;
+      this.view.rightRate.innerText = `1 ${tempArr[1].rate} = ${tempArr[1].perUnit} ${tempArr[0].rate}`;
     }, 100);
 
     this.model.arrLeft.forEach((el, index) => {
