@@ -157,8 +157,8 @@ select {
   margin-left: 300px;
 }
 
-.paragraph:first-child{
-  font-weight:900;
+.paragraph:first-child {
+  font-weight: 900;
 }
 
 .paragraphs {
@@ -169,11 +169,9 @@ select {
   width: 55%;
 }
 
-
-
-.log-in{
+.log-in {
   margin-right: 300px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   height: 35px;
   margin-top: -5px;
   border: 0;

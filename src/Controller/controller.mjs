@@ -66,7 +66,6 @@ export default class Controller {
       this.view.rightRate.innerText = `1 ${tempArr[1].rate} = ${tempArr[1].summ2} ${tempArr[0].rate}`;
     }, 100);
 
-
     this.model.arrLeft.forEach((el, index) => {
       const input = this.view.createInput({
         type: "radio",
