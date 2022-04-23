@@ -6,8 +6,10 @@ export default class Controller {
 
   init() {
     this.view.init();
+    this.convert();
     this.render();
-    this.convert("RUB", "USD");
+    this.leftInput();
+    this.rightInput();
   }
 
   async getCurrency(currencyFrom, currencyIn) {
@@ -16,24 +18,54 @@ export default class Controller {
     );
     const data = await response.json();
 
-    return data;
+    return Object.values(data.rates)[0];
   }
 
-  convert(currencyFrom, currencyIn) {
-    this.getCurrency(currencyFrom, currencyIn).then((data) => {
-      console.log(data);
+  convert() {
+    const tempArr = this.model.tempArr;
+    Promise.all([
+      this.getCurrency(tempArr[0].rate, tempArr[1].rate),
+      this.getCurrency(tempArr[1].rate, tempArr[0].rate),
+    ]).then((data) => {
+      tempArr[0].summ2 = data[0];
+      tempArr[1].summ2 = data[1];
+    });
+  }
+
+  leftInput() {
+    this.view.leftInput.addEventListener("keyup", (e) => {
+      this.view.leftInput.classList.add("active");
+      this.model.tempArr[0].summ = e.target.value;
+      this.render();
+    });
+  }
+
+  rightInput() {
+    this.view.rightInput.addEventListener("keyup", (e) => {
+      this.view.leftInput.classList.remove("active");
+      this.model.tempArr[1].summ = e.target.value;
+      this.render();
     });
   }
 
   render() {
     this.view.leftButtons.innerHTML = "";
     this.view.rightButtons.innerHTML = "";
-
-    const temp = 0;
-    const tempArr = this.model.tempArr;
-
-    
+    this.tempArr = this.model.tempArr;
     this.model.checkedCange();
+
+    setTimeout(() => {
+      if (this.view.leftInput.className === "converters-input active") {
+        this.model.rate();
+        this.view.rightInput.value = this.tempArr[1].summ;
+      } else {
+        this.model.rate2();
+        this.view.leftInput.value = this.tempArr[0].summ;
+      }
+
+      this.view.leftRate.innerText = `1 ${this.tempArr[0].rate} = ${this.tempArr[0].summ2} ${this.tempArr[1].rate}`;
+      this.view.rightRate.innerText = `1 ${this.tempArr[1].rate} = ${this.tempArr[1].summ2} ${this.tempArr[0].rate}`;
+    }, 100);
 
     this.model.arrLeft.forEach((el, index) => {
       const input = this.view.createInput({
@@ -51,7 +83,8 @@ export default class Controller {
       });
 
       input.addEventListener("click", (e) => {
-        tempArr[0] = label.innerText;
+        this.tempArr[0].rate = label.innerText;
+        this.convert();
         this.render();
       });
 
@@ -75,7 +108,9 @@ export default class Controller {
       });
 
       input.addEventListener("click", (e) => {
-        tempArr[1] = label.innerText;
+        this.tempArr[1].rate = label.innerText;
+
+        this.convert();
         this.render();
       });
 

@@ -51,7 +51,7 @@ export default class View {
     props.id === 0 && (input.id = props.id);
     props.id && (input.id = props.id);
     props.type && (input.type = props.type);
-    props.checked && (input.setAttribute("checked","checked"));
+    props.checked && input.setAttribute("checked", "checked");
 
     return input;
   }
@@ -106,7 +106,7 @@ export default class View {
 
     this.leftInput = this.createInput({
       text: "1",
-      class: "converters-input",
+      class: "converters-input active",
       id: "left-input",
     });
 
