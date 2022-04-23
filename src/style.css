@@ -33,7 +33,7 @@ dd {
 body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
-  line-height: 1.5;
+  line-height: 2;
 }
 
 /* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
@@ -80,32 +80,65 @@ select {
   height: 80vh;
 }
 
-.converter-box {
-  border: 2px solid black;
-}
-
-/* #right-converter {
-  border: 2px solid black;
-  width: 100px;
-  height: 100px;
-} */
-
 .converters {
   display: flex;
+  justify-content: space-between;
+  width: 600px;
 }
 
 .converter-box {
   margin: 20px;
+  width: 230px;
+}
+
+.converter-title {
+  position: relative;
+  right: 95px;
+  font-size: 36px;
+  margin-top: 50px;
+}
+
+.converters-input {
+  border: 0;
+  outline: none;
+  font-size: 36px;
+  /* height: 100px; */
+  width: 200px;
+}
+
+.inputRate-wrapper {
+  border: 1px solid gray;
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 0 10px;
+  width: 223px;
 }
 
 .checked-inputs {
   display: none;
 }
 
-.checked-labels {
-  background-color: red;
+.checked-inputs:checked + label {
+  background-color: #833ae0;
+  color: white;
+  border: 0;
 }
 
-.checked-inputs:checked + label {
-  background-color: aqua;
+.checked-labels {
+  position: relative;
+  left: -1px;
+  border: 1px solid gray;
+  height: 5px;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.buttons-box {
+  margin-bottom: 5px;
+  border: 1px solid gray;
+  width: 223px;
+  border-radius: 5px;
+  overflow: hidden;
+  font-size: 12px;
+  margin-bottom: 15px;
 }

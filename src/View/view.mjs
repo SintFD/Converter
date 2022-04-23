@@ -94,13 +94,13 @@ export default class View {
       class: "buttons-box",
     });
 
-    this.iHave = this.createDiv({
-      class: "i-have",
+    this.leftText = this.createDiv({
+      class: "left-text",
       text: "У меня есть",
     });
 
-    this.wantBuy = this.createDiv({
-      class: "want-Buy",
+    this.rightText = this.createDiv({
+      class: "right-text",
       text: "Хочу приобрести",
     });
 
@@ -125,6 +125,14 @@ export default class View {
       id: "right-rate",
     });
 
+    this.inputRateWrapperLeft = this.createDiv({
+      class: "inputRate-wrapper",
+    });
+
+    this.inputRateWrapperRight = this.createDiv({
+      class: "inputRate-wrapper",
+    });
+
     this.root.append(this.header);
     this.root.append(this.container);
 
@@ -134,14 +142,18 @@ export default class View {
     this.converters.append(this.leftConverter);
     this.converters.append(this.rightConverter);
 
-    this.leftConverter.append(this.iHave);
-    this.leftConverter.append(this.leftButtons);
-    this.leftConverter.append(this.leftInput);
-    this.leftConverter.append(this.leftRate);
+    this.inputRateWrapperLeft.append(this.leftInput);
+    this.inputRateWrapperLeft.append(this.leftRate);
 
-    this.rightConverter.append(this.wantBuy);
+    this.inputRateWrapperRight.append(this.rightInput);
+    this.inputRateWrapperRight.append(this.rightRate);
+
+    this.leftConverter.append(this.leftText);
+    this.leftConverter.append(this.leftButtons);
+    this.leftConverter.append(this.inputRateWrapperLeft);
+
+    this.rightConverter.append(this.rightText);
     this.rightConverter.append(this.rightButtons);
-    this.rightConverter.append(this.rightInput);
-    this.rightConverter.append(this.rightRate);
+    this.rightConverter.append(this.inputRateWrapperRight);
   }
 }
