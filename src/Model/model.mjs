@@ -3,13 +3,13 @@ export default class Model {
     this.arrLeft = [
       { rate: "RUB", checked: "checked" },
       { rate: "USD", checked: "" },
-      { rate: "EUR", checked: "" },
+      { rate: "TRY", checked: "" },
       { rate: "AZN", checked: "" },
     ];
     this.arrRight = [
       { rate: "RUB", checked: "" },
       { rate: "USD", checked: "checked" },
-      { rate: "EUR", checked: "" },
+      { rate: "TRY", checked: "" },
       { rate: "AZN", checked: "" },
     ];
     this.tempArr = [
@@ -20,11 +20,15 @@ export default class Model {
 
   checkedCange() {
     this.arrLeft.forEach((el) => {
-      this.tempArr[0].rate === el.rate? (el.checked = "checked") : (el.checked = "");
+      this.tempArr[0].rate === el.rate
+        ? (el.checked = "checked")
+        : (el.checked = "");
     });
 
     this.arrRight.forEach((el) => {
-      this.tempArr[1].rate === el.rate? (el.checked = "checked"): (el.checked = "");
+      this.tempArr[1].rate === el.rate
+        ? (el.checked = "checked")
+        : (el.checked = "");
     });
   }
 

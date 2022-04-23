@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
 /* Указываем box sizing */
 *,
 *::before,
@@ -34,6 +36,7 @@ body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 2;
+  font-family: "Roboto";
 }
 
 /* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
@@ -67,9 +70,13 @@ select {
 }
 
 .header {
-  background-color: red;
-  height: 100px;
+  display: flex;
+  height: 50px;
   width: 100%;
+  padding: 14px;
+  background-color: #f5f5f6;
+  line-height: 1;
+  justify-content: space-between;
 }
 
 .container {
@@ -93,7 +100,7 @@ select {
 
 .converter-title {
   position: relative;
-  right: 95px;
+  right: 70px;
   font-size: 36px;
   margin-top: 50px;
 }
@@ -102,12 +109,11 @@ select {
   border: 0;
   outline: none;
   font-size: 36px;
-  /* height: 100px; */
   width: 200px;
 }
 
 .inputRate-wrapper {
-  border: 1px solid gray;
+  border: 1px solid gainsboro;
   border-radius: 5px;
   overflow: hidden;
   padding: 0 10px;
@@ -118,7 +124,7 @@ select {
   display: none;
 }
 
-.checked-inputs:checked + label {
+.checked-inputs:checked + .checked-labels {
   background-color: #833ae0;
   color: white;
   border: 0;
@@ -127,18 +133,49 @@ select {
 .checked-labels {
   position: relative;
   left: -1px;
-  border: 1px solid gray;
+  border: 1px solid gainsboro;
   height: 5px;
-  padding: 15px;
+  padding: 16px;
   cursor: pointer;
 }
 
 .buttons-box {
   margin-bottom: 5px;
-  border: 1px solid gray;
+  border: 1px solid gainsboro;
   width: 223px;
   border-radius: 5px;
   overflow: hidden;
   font-size: 12px;
   margin-bottom: 15px;
+}
+
+.bank-img {
+  background-image: url("./assets/photo/Asset\ 1@3x\ 1.png");
+  height: 25px;
+  width: 90px;
+  background-repeat: no-repeat;
+  margin-left: 300px;
+}
+
+.paragraph:first-child{
+  font-weight:900;
+}
+
+.paragraphs {
+  display: flex;
+  padding: 6px;
+  font-size: 15px;
+  justify-content: space-between;
+  width: 55%;
+}
+
+
+
+.log-in{
+  margin-right: 300px;
+  background-color: #FFFFFF;
+  height: 35px;
+  margin-top: -5px;
+  border: 0;
+  border-radius: 10px;
 }

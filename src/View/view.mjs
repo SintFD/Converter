@@ -133,8 +133,69 @@ export default class View {
       class: "inputRate-wrapper",
     });
 
+    this.img = this.createDiv({
+      class:'bank-img'
+    })
+
+    this.paragraphs = this.createDiv({
+      class:'paragraphs'
+    })
+
+    this.pBank = this.createDiv({
+      text:'БАНК',
+      class:'paragraph'
+    })
+
+    this.pBusiness = this.createDiv({
+      text:'БИЗНЕС',
+      class:'paragraph'
+    })
+
+    this.pInvestment = this.createDiv({
+      text:'ИНВЕСТИЦИИ',
+      class:'paragraph'
+    })
+
+    this.pInsurance = this.createDiv({
+      text:'СТРАХОВАНИЕ',
+      class:'paragraph'
+    })
+
+    this.pMobile = this.createDiv({
+      text:'МОБАЙЛ',
+      class:'paragraph'
+    })
+
+    this.pTraveling = this.createDiv({
+      text:'ПУТЕШЕСТВИЯ',
+      class:'paragraph'
+    })
+
+    this.pEntertainment = this.createDiv({
+      text:'РАЗВЛЕЧЕНИЯ',
+      class:'paragraph'
+    })
+
+    this.logInButton = this.createButton({
+      text:'Войти',
+      class:'log-in'
+      
+    })
+
     this.root.append(this.header);
     this.root.append(this.container);
+
+    this.header.append(this.img)
+    this.header.append(this.paragraphs)
+    this.header.append(this.logInButton)
+
+    this.paragraphs.append(this.pBank)
+    this.paragraphs.append(this.pBusiness)
+    this.paragraphs.append(this.pInvestment)
+    this.paragraphs.append(this.pInsurance)
+    this.paragraphs.append(this.pMobile)
+    this.paragraphs.append(this.pTraveling)
+    this.paragraphs.append(this.pEntertainment)
 
     this.container.append(this.converterTitle);
     this.container.append(this.converters);
