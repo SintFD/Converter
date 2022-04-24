@@ -108,11 +108,13 @@ export default class View {
       text: "1",
       class: "converters-input active",
       id: "left-input",
+      type: "number",
     });
 
     this.rightInput = this.createInput({
       class: "converters-input",
       id: "right-input",
+      type: "number",
     });
 
     this.leftRate = this.createDiv({

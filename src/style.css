@@ -164,7 +164,7 @@ select {
 .paragraphs {
   display: flex;
   padding: 6px;
-  font-size: 15px;
+  font-size: 11px;
   justify-content: space-between;
   width: 55%;
   flex-wrap: wrap;
@@ -177,4 +177,14 @@ select {
   margin-top: -5px;
   border: 0;
   border-radius: 10px;
+}
+
+.converters-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.rate {
+  opacity: 0.5;
+  font-size: 12px;
+  margin: 5px;
 }
