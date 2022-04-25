@@ -183,6 +183,10 @@ export default class View {
       class: "log-in",
     });
 
+    this.swapButton = this.createButton({
+      class: "swap-button",
+    });
+
     this.root.append(this.header);
     this.root.append(this.container);
 
@@ -202,6 +206,7 @@ export default class View {
     this.container.append(this.converters);
 
     this.converters.append(this.leftConverter);
+    this.converters.append(this.swapButton);
     this.converters.append(this.rightConverter);
 
     this.inputRateWrapperLeft.append(this.leftInput);

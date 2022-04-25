@@ -10,15 +10,16 @@ export default class Controller {
     this.render();
     this.leftInput();
     this.rightInput();
+    this.swap();
   }
 
   async getCurrency(currencyFrom, currencyIn) {
     const response = await fetch(
-      `https://api.exchangerate.host/latest?base=${currencyFrom}&symbols=${currencyIn}`
+      `https://api.exchangerate.host/convert?from=${currencyFrom}&to=${currencyIn}`
     );
     const data = await response.json();
 
-    return Object.values(data.rates)[0];
+    return data.result;
   }
 
   convert() {
@@ -29,6 +30,14 @@ export default class Controller {
     ]).then((data) => {
       tempArr[0].perUnit = data[0];
       tempArr[1].perUnit = data[1];
+    });
+  }
+
+  swap() {
+    this.view.swapButton.addEventListener("click", () => {
+      this.model.swap();
+      this.convert();
+      this.render();
     });
   }
 
@@ -64,7 +73,7 @@ export default class Controller {
       }
       this.view.leftRate.innerText = `1 ${tempArr[0].rate} = ${tempArr[0].perUnit} ${tempArr[1].rate}`;
       this.view.rightRate.innerText = `1 ${tempArr[1].rate} = ${tempArr[1].perUnit} ${tempArr[0].rate}`;
-    }, 100);
+    }, 200);
 
     this.model.arrLeft.forEach((el, index) => {
       const input = this.view.createInput({

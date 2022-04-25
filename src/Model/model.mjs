@@ -35,4 +35,10 @@ export default class Model {
   rate2() {
     this.tempArr[0].summ = this.tempArr[1].perUnit * this.tempArr[1].summ;
   }
+
+  swap(){
+    const temp = this.tempArr[0].rate
+    this.tempArr[0].rate = this.tempArr[1].rate
+    this.tempArr[1].rate = temp
+  }
 }

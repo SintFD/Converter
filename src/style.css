@@ -189,3 +189,20 @@ select {
   font-size: 12px;
   margin: 5px;
 }
+
+.swap-button {
+  background-image: url("./assets/photo/icons8-изменять-64.png");
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-size: 25px;
+  background-color: white;
+  border: 0;
+  cursor: pointer;
+  margin-top: 50px;
+  opacity: 0.5;
+}
+
+.swap-button:hover {
+  opacity: 1;
+}
