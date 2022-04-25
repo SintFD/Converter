@@ -200,7 +200,7 @@ select {
   border: 0;
   cursor: pointer;
   margin-top: 50px;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 .swap-button:hover {
