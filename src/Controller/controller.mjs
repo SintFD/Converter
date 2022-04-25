@@ -73,7 +73,7 @@ export default class Controller {
       }
       this.view.leftRate.innerText = `1 ${tempArr[0].rate} = ${tempArr[0].perUnit} ${tempArr[1].rate}`;
       this.view.rightRate.innerText = `1 ${tempArr[1].rate} = ${tempArr[1].perUnit} ${tempArr[0].rate}`;
-    }, 200);
+    }, 100);
 
     this.model.arrLeft.forEach((el, index) => {
       const input = this.view.createInput({
@@ -117,7 +117,6 @@ export default class Controller {
 
       input.addEventListener("click", (e) => {
         tempArr[1].rate = label.innerText;
-
         this.convert();
         this.render();
       });
