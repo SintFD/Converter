@@ -8,9 +8,9 @@ export default class Controller {
     this.view.init();
     this.convert();
     this.render();
+    this.createButtons();
     this.leftInput();
     this.rightInput();
-    this.swap();
   }
 
   async getCurrency(currencyFrom, currencyIn) {
@@ -24,20 +24,8 @@ export default class Controller {
 
   convert() {
     const tempArr = this.model.tempArr;
-    Promise.all([
-      this.getCurrency(tempArr[0].rate, tempArr[1].rate),
-      this.getCurrency(tempArr[1].rate, tempArr[0].rate),
-    ]).then((data) => {
-      tempArr[0].perUnit = data[0];
-      tempArr[1].perUnit = data[1];
-    });
-  }
-
-  swap() {
-    this.view.swapButton.addEventListener("click", () => {
-      this.model.swap();
-      this.convert();
-      this.render();
+    this.getCurrency(tempArr[0].rate, tempArr[1].rate).then((data) => {
+      tempArr[0].perUnit = data;
     });
   }
 
@@ -57,24 +45,8 @@ export default class Controller {
     });
   }
 
-  render() {
-    this.view.leftButtons.innerHTML = "";
-    this.view.rightButtons.innerHTML = "";
+  createButtons() {
     const tempArr = this.model.tempArr;
-    this.model.checkedCange();
-
-    setTimeout(() => {
-      if (this.view.leftInput.className === "converters-input active") {
-        this.model.rate();
-        this.view.rightInput.value = tempArr[1].summ;
-      } else {
-        this.model.rate2();
-        this.view.leftInput.value = tempArr[0].summ;
-      }
-      this.view.leftRate.innerText = `1 ${tempArr[0].rate} = ${tempArr[0].perUnit} ${tempArr[1].rate}`;
-      this.view.rightRate.innerText = `1 ${tempArr[1].rate} = ${tempArr[1].perUnit} ${tempArr[0].rate}`;
-    }, 100);
-
     this.model.arrLeft.forEach((el, index) => {
       const input = this.view.createInput({
         type: "radio",
@@ -124,5 +96,23 @@ export default class Controller {
       this.view.rightButtons.append(input);
       this.view.rightButtons.append(label);
     });
+  }
+
+  render() {
+    const tempArr = this.model.tempArr;
+    this.model.checkedCange();
+
+    setTimeout(() => {
+      if (this.view.leftInput.className !== "converters-input") {
+        this.model.rateFromTo();
+        this.view.rightInput.value = tempArr[1].summ;
+      } else {
+        this.model.rateToFrom();
+        this.view.leftInput.value = tempArr[0].summ;
+      }
+
+      this.view.leftRate.innerText = `1 ${tempArr[0].rate} = ${tempArr[0].perUnit} ${tempArr[1].rate}`;
+      this.view.rightRate.innerText = `1 ${tempArr[1].rate} = ${Math.floor((1 / tempArr[0].perUnit) * 10 ** 6) / 10 ** 6} ${tempArr[0].rate}`;
+    }, 100);
   }
 }

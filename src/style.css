@@ -120,6 +120,16 @@ select {
   width: 223px;
 }
 
+.checked-labels {
+  position: relative;
+  left: -1px;
+  border: 1px solid gainsboro;
+  height: 5px;
+  padding: 6px 16px;
+  cursor: pointer;
+  transition: 1s;
+}
+
 .checked-inputs {
   display: none;
 }
@@ -128,15 +138,6 @@ select {
   background-color: #833ae0;
   color: white;
   border: 0;
-}
-
-.checked-labels {
-  position: relative;
-  left: -1px;
-  border: 1px solid gainsboro;
-  height: 5px;
-  padding: 6px 16px;
-  cursor: pointer;
 }
 
 .buttons-box {

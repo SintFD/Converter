@@ -1,20 +1,20 @@
 export default class Model {
   constructor() {
     this.arrLeft = [
-      { rate: "RUB", checked: "checked" },
-      { rate: "USD", checked: "" },
-      { rate: "TRY", checked: "" },
-      { rate: "AZN", checked: "" },
+      { rate: "RUB" },
+      { rate: "USD" },
+      { rate: "TRY" },
+      { rate: "AZN" },
     ];
     this.arrRight = [
-      { rate: "RUB", checked: "" },
-      { rate: "USD", checked: "checked" },
-      { rate: "TRY", checked: "" },
-      { rate: "AZN", checked: "" },
+      { rate: "RUB" },
+      { rate: "USD" },
+      { rate: "TRY" },
+      { rate: "AZN" },
     ];
     this.tempArr = [
       { rate: "RUB", summ: "1", perUnit: "" },
-      { rate: "USD", summ: "", perUnit: "" },
+      { rate: "USD", summ: "" },
     ];
   }
 
@@ -28,17 +28,11 @@ export default class Model {
     });
   }
 
-  rate() {
+  rateFromTo() {
     this.tempArr[1].summ = this.tempArr[0].perUnit * this.tempArr[0].summ;
   }
 
-  rate2() {
-    this.tempArr[0].summ = this.tempArr[1].perUnit * this.tempArr[1].summ;
-  }
-
-  swap(){
-    const temp = this.tempArr[0].rate
-    this.tempArr[0].rate = this.tempArr[1].rate
-    this.tempArr[1].rate = temp
+  rateToFrom() {
+    this.tempArr[0].summ = (1 / this.tempArr[0].perUnit) * this.tempArr[1].summ;
   }
 }
