@@ -13,18 +13,22 @@ export default class Model {
       { rate: "AZN" },
     ];
     this.tempArr = [
-      { rate: "RUB", summ: "1", perUnit: "" },
-      { rate: "USD", summ: "" },
+      { rate: "RUB", summ: "1", perUnit: null },
+      { rate: "USD", summ: null },
     ];
   }
 
   checkedCange() {
     this.arrLeft.forEach((el) => {
-      this.tempArr[0].rate === el.rate? (el.checked = "checked") : (el.checked = "");
+      this.tempArr[0].rate === el.rate
+        ? (el.checked = "checked")
+        : (el.checked = "");
     });
 
     this.arrRight.forEach((el) => {
-      this.tempArr[1].rate === el.rate? (el.checked = "checked") : (el.checked = "");
+      this.tempArr[1].rate === el.rate
+        ? (el.checked = "checked")
+        : (el.checked = "");
     });
   }
 

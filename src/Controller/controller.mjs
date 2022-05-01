@@ -23,10 +23,12 @@ export default class Controller {
   }
 
   convert() {
-    const tempArr = this.model.tempArr;
-    this.getCurrency(tempArr[0].rate, tempArr[1].rate).then((data) => {
-      tempArr[0].perUnit = data;
-    });
+    this.tempArr = this.model.tempArr;
+    this.getCurrency(this.tempArr[0].rate, this.tempArr[1].rate).then(
+      (data) => {
+        this.tempArr[0].perUnit = data;
+      }
+    );
   }
 
   leftInput() {
@@ -46,7 +48,6 @@ export default class Controller {
   }
 
   createButtons() {
-    const tempArr = this.model.tempArr;
     this.model.arrLeft.forEach((el, index) => {
       const input = this.view.createInput({
         type: "radio",
@@ -62,8 +63,8 @@ export default class Controller {
         for: index,
       });
 
-      input.addEventListener("click", (e) => {
-        tempArr[0].rate = label.innerText;
+      input.addEventListener("click", () => {
+        this.tempArr[0].rate = label.innerText;
         this.convert();
         this.render();
       });
@@ -87,8 +88,8 @@ export default class Controller {
         for: `input-${index}`,
       });
 
-      input.addEventListener("click", (e) => {
-        tempArr[1].rate = label.innerText;
+      input.addEventListener("click", () => {
+        this.tempArr[1].rate = label.innerText;
         this.convert();
         this.render();
       });
@@ -111,8 +112,10 @@ export default class Controller {
         this.view.leftInput.value = tempArr[0].summ;
       }
 
+      this.view.rightRate.innerText = `1 ${tempArr[1].rate} = ${
+        Math.floor((1 / tempArr[0].perUnit) * 10 ** 6) / 10 ** 6
+      } ${tempArr[0].rate}`;
       this.view.leftRate.innerText = `1 ${tempArr[0].rate} = ${tempArr[0].perUnit} ${tempArr[1].rate}`;
-      this.view.rightRate.innerText = `1 ${tempArr[1].rate} = ${Math.floor((1 / tempArr[0].perUnit) * 10 ** 6) / 10 ** 6} ${tempArr[0].rate}`;
     }, 100);
   }
 }
