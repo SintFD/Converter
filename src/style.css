@@ -127,7 +127,7 @@ select {
   height: 5px;
   padding: 6px 16px;
   cursor: pointer;
-  transition: 1s;
+  transition: 0.5s;
 }
 
 .checked-inputs {
