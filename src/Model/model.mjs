@@ -13,23 +13,18 @@ export default class Model {
       { rate: "AZN", checked: "" },
     ];
 
-    this.coefficient = null
-    this.fromCurrency = "RUB"
-    this.toCurrency = "USD"
-    this.fromSumm = '1'
-    this.toSumm =null
-    
-    this.tempArr = [
-      { rate: "RUB", summ: "1", perUnit: "" },
-      { rate: "USD", summ: "" },
-    ];
+    this.coefficient = null;
+    this.fromCurrency = "RUB";
+    this.toCurrency = "USD";
+    this.fromSumm = 1;
+    this.toSumm = null;
   }
 
   rateFromTo() {
-    this.tempArr[1].summ = this.tempArr[0].perUnit * this.tempArr[0].summ;
+    this.toSumm = this.coefficient * this.fromSumm;
   }
 
   rateToFrom() {
-    this.tempArr[0].summ = (1 / this.tempArr[0].perUnit) * this.tempArr[1].summ;
+    this.fromSumm = (1 / this.coefficient) * this.toSumm;
   }
 }

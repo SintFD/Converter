@@ -18,18 +18,17 @@ export default class Controller {
     );
     const data = await response.json();
 
-    this.tempArr[0].perUnit = data.result;
+    this.model.coefficient = data.result;
   }
 
   async convert() {
-    this.tempArr = this.model.tempArr;
-    await this.getCurrency(this.tempArr[0].rate, this.tempArr[1].rate);
+    await this.getCurrency(this.model.fromCurrency, this.model.toCurrency);
   }
 
   leftInput() {
     this.view.leftInput.addEventListener("keyup", (e) => {
       this.view.leftInput.classList.add("active");
-      this.model.tempArr[0].summ = e.target.value;
+      this.model.fromSumm = e.target.value;
       this.render();
     });
   }
@@ -37,7 +36,7 @@ export default class Controller {
   rightInput() {
     this.view.rightInput.addEventListener("keyup", (e) => {
       this.view.leftInput.classList.remove("active");
-      this.model.tempArr[1].summ = e.target.value;
+      this.model.toSumm.summ = e.target.value;
       this.render();
     });
   }
@@ -59,7 +58,7 @@ export default class Controller {
       });
 
       input.addEventListener("click", () => {
-        this.tempArr[0].rate = label.innerText;
+        this.model.fromCurrency = label.innerText;
         this.convert();
         this.render();
       });
@@ -84,7 +83,7 @@ export default class Controller {
       });
 
       input.addEventListener("click", () => {
-        this.tempArr[1].rate = label.innerText;
+        this.model.toCurrency = label.innerText;
         this.convert();
         this.render();
       });
@@ -95,21 +94,19 @@ export default class Controller {
   }
 
   async render() {
-    const tempArr = this.model.tempArr;
-
     await this.convert();
 
     if (this.view.leftInput.className !== "converters-input") {
       this.model.rateFromTo();
-      this.view.rightInput.value = tempArr[1].summ;
+      this.view.rightInput.value = this.model.toSumm;
     } else {
       this.model.rateToFrom();
-      this.view.leftInput.value = tempArr[0].summ;
+      this.view.leftInput.value = this.model.fromSumm;
     }
 
-    this.view.rightRate.innerText = `1 ${tempArr[1].rate} = ${
-      Math.floor((1 / tempArr[0].perUnit) * 10 ** 6) / 10 ** 6
-    } ${tempArr[0].rate}`;
-    this.view.leftRate.innerText = `1 ${tempArr[0].rate} = ${tempArr[0].perUnit} ${tempArr[1].rate}`;
+    this.view.rightRate.innerText = `1 ${this.model.toCurrency} = ${
+      Math.floor((1 / this.model.coefficient) * 10 ** 6) / 10 ** 6
+    } ${this.model.fromCurrency}`;
+    this.view.leftRate.innerText = `1 ${this.model.fromCurrency} = ${this.model.coefficient} ${this.model.toCurrency}`;
   }
 }
