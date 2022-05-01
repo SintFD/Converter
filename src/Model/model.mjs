@@ -1,42 +1,30 @@
 export default class Model {
   constructor() {
     this.arrLeft = [
-      { rate: "RUB" },
-      { rate: "USD" },
-      { rate: "TRY" },
-      { rate: "AZN" },
+      { rate: "RUB", checked: "checked" },
+      { rate: "USD", checked: "" },
+      { rate: "TRY", checked: "" },
+      { rate: "AZN", checked: "" },
     ];
     this.arrRight = [
-      { rate: "RUB" },
-      { rate: "USD" },
-      { rate: "TRY" },
-      { rate: "AZN" },
+      { rate: "RUB", checked: "" },
+      { rate: "USD", checked: "checked" },
+      { rate: "TRY", checked: "" },
+      { rate: "AZN", checked: "" },
     ];
-    this.tempArr = [
-      { rate: "RUB", summ: "1", perUnit: null },
-      { rate: "USD", summ: null },
-    ];
-  }
 
-  checkedCange() {
-    this.arrLeft.forEach((el) => {
-      this.tempArr[0].rate === el.rate
-        ? (el.checked = "checked")
-        : (el.checked = "");
-    });
-
-    this.arrRight.forEach((el) => {
-      this.tempArr[1].rate === el.rate
-        ? (el.checked = "checked")
-        : (el.checked = "");
-    });
+    this.coefficient = null;
+    this.fromCurrency = "RUB";
+    this.toCurrency = "USD";
+    this.fromSumm = 1;
+    this.toSumm = null;
   }
 
   rateFromTo() {
-    this.tempArr[1].summ = this.tempArr[0].perUnit * this.tempArr[0].summ;
+    this.toSumm = this.coefficient * this.fromSumm;
   }
 
   rateToFrom() {
-    this.tempArr[0].summ = (1 / this.tempArr[0].perUnit) * this.tempArr[1].summ;
+    this.fromSumm = (1 / this.coefficient) * this.toSumm;
   }
 }
