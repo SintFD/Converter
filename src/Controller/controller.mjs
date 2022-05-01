@@ -36,7 +36,7 @@ export default class Controller {
   rightInput() {
     this.view.rightInput.addEventListener("keyup", (e) => {
       this.view.leftInput.classList.remove("active");
-      this.model.toSumm.summ = e.target.value;
+      this.model.toSumm = e.target.value;
       this.render();
     });
   }
