@@ -1,35 +1,28 @@
 export default class Model {
   constructor() {
     this.arrLeft = [
-      { rate: "RUB" },
-      { rate: "USD" },
-      { rate: "TRY" },
-      { rate: "AZN" },
+      { rate: "RUB", checked: "checked" },
+      { rate: "USD", checked: "" },
+      { rate: "TRY", checked: "" },
+      { rate: "AZN", checked: "" },
     ];
     this.arrRight = [
-      { rate: "RUB" },
-      { rate: "USD" },
-      { rate: "TRY" },
-      { rate: "AZN" },
+      { rate: "RUB", checked: "" },
+      { rate: "USD", checked: "checked" },
+      { rate: "TRY", checked: "" },
+      { rate: "AZN", checked: "" },
     ];
+
+    this.coefficient = null
+    this.fromCurrency = "RUB"
+    this.toCurrency = "USD"
+    this.fromSumm = '1'
+    this.toSumm =null
+    
     this.tempArr = [
-      { rate: "RUB", summ: "1", perUnit: null },
-      { rate: "USD", summ: null },
+      { rate: "RUB", summ: "1", perUnit: "" },
+      { rate: "USD", summ: "" },
     ];
-  }
-
-  checkedCange() {
-    this.arrLeft.forEach((el) => {
-      this.tempArr[0].rate === el.rate
-        ? (el.checked = "checked")
-        : (el.checked = "");
-    });
-
-    this.arrRight.forEach((el) => {
-      this.tempArr[1].rate === el.rate
-        ? (el.checked = "checked")
-        : (el.checked = "");
-    });
   }
 
   rateFromTo() {

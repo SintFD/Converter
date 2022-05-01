@@ -6,7 +6,6 @@ export default class Controller {
 
   init() {
     this.view.init();
-    this.convert();
     this.render();
     this.createButtons();
     this.leftInput();
@@ -19,16 +18,12 @@ export default class Controller {
     );
     const data = await response.json();
 
-    return data.result;
+    this.tempArr[0].perUnit = data.result;
   }
 
-  convert() {
+  async convert() {
     this.tempArr = this.model.tempArr;
-    this.getCurrency(this.tempArr[0].rate, this.tempArr[1].rate).then(
-      (data) => {
-        this.tempArr[0].perUnit = data;
-      }
-    );
+    await this.getCurrency(this.tempArr[0].rate, this.tempArr[1].rate);
   }
 
   leftInput() {
@@ -99,23 +94,22 @@ export default class Controller {
     });
   }
 
-  render() {
+  async render() {
     const tempArr = this.model.tempArr;
-    this.model.checkedCange();
 
-    setTimeout(() => {
-      if (this.view.leftInput.className !== "converters-input") {
-        this.model.rateFromTo();
-        this.view.rightInput.value = tempArr[1].summ;
-      } else {
-        this.model.rateToFrom();
-        this.view.leftInput.value = tempArr[0].summ;
-      }
+    await this.convert();
 
-      this.view.rightRate.innerText = `1 ${tempArr[1].rate} = ${
-        Math.floor((1 / tempArr[0].perUnit) * 10 ** 6) / 10 ** 6
-      } ${tempArr[0].rate}`;
-      this.view.leftRate.innerText = `1 ${tempArr[0].rate} = ${tempArr[0].perUnit} ${tempArr[1].rate}`;
-    }, 100);
+    if (this.view.leftInput.className !== "converters-input") {
+      this.model.rateFromTo();
+      this.view.rightInput.value = tempArr[1].summ;
+    } else {
+      this.model.rateToFrom();
+      this.view.leftInput.value = tempArr[0].summ;
+    }
+
+    this.view.rightRate.innerText = `1 ${tempArr[1].rate} = ${
+      Math.floor((1 / tempArr[0].perUnit) * 10 ** 6) / 10 ** 6
+    } ${tempArr[0].rate}`;
+    this.view.leftRate.innerText = `1 ${tempArr[0].rate} = ${tempArr[0].perUnit} ${tempArr[1].rate}`;
   }
 }
