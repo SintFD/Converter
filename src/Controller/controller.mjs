@@ -6,10 +6,16 @@ export default class Controller {
 
   init() {
     this.view.init();
+    this.queue();
     this.render();
     this.createButtons();
     this.leftInput();
     this.rightInput();
+  }
+
+  async queue() {
+    await this.convert();
+    this.render();
   }
 
   async getCurrency(currencyFrom, currencyIn) {
@@ -59,7 +65,7 @@ export default class Controller {
 
       input.addEventListener("click", () => {
         this.model.fromCurrency = label.innerText;
-        this.render();
+        this.queue();
       });
 
       this.view.leftButtons.append(input);
@@ -83,7 +89,7 @@ export default class Controller {
 
       input.addEventListener("click", () => {
         this.model.toCurrency = label.innerText;
-        this.render();
+        this.queue();
       });
 
       this.view.rightButtons.append(input);
@@ -91,9 +97,7 @@ export default class Controller {
     });
   }
 
-  async render() {
-    await this.convert();
-
+  render() {
     if (this.view.leftInput.className !== "converters-input") {
       this.model.rateFromTo();
       this.view.rightInput.value = this.model.toSumm;
