@@ -59,7 +59,6 @@ export default class Controller {
 
       input.addEventListener("click", () => {
         this.model.fromCurrency = label.innerText;
-        this.convert();
         this.render();
       });
 
@@ -84,7 +83,6 @@ export default class Controller {
 
       input.addEventListener("click", () => {
         this.model.toCurrency = label.innerText;
-        this.convert();
         this.render();
       });
 

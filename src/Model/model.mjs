@@ -14,8 +14,10 @@ export default class Model {
     ];
 
     this.coefficient = null;
+
     this.fromCurrency = "RUB";
     this.toCurrency = "USD";
+
     this.fromSumm = 1;
     this.toSumm = null;
   }
